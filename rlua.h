@@ -34,21 +34,22 @@ struct Rtvalue {
 
 /* LUA TYPES */
 
-#define RLUA_TNONE					          (-1)
+#define RLUA_TNONE		      (-1)
 #define RLUA_TNIL                     0
 #define RLUA_TNUMBER                  2
 #define RLUA_TBOOLEAN                 3
 #define RLUA_TSTRING                  4
-#define RLUA_TLIGHTUSERDATA		        1
+#define RLUA_TLIGHTUSERDATA	      1
 #define RLUA_TTABLE                   7
-#define RLUA_TUSERDATA			          8
-#define RLUA_TFUNCTION				        6
+#define RLUA_TUSERDATA		      8
+#define RLUA_TFUNCTION		      6
 #define RLUA_TPROTO                   9
 #define RLUA_TTHREAD                  5
 #define RLUA_TUPVALUE                 10
 
 /* LUA STACK STUFF */
 #define Rluatop     12;
+#define Rluabase    8;
 
 
 #define rlua_inctop(r) *(DWORD*)(r + Rluatop) += sizeof(Rtvalue)
@@ -158,7 +159,7 @@ int checktype(lua_State *Ls, int narg, int t) {
 }
 
 int gettop(int l) {
-	return (*(DWORD *)(l + 12) - *(DWORD *)(l + 8)) >> 4;
+	return (*(DWORD *)(l + Rluatop) - *(DWORD *)(l + Rluabase)) >> 4;
 }
 
 // deadass setfield bypass skidded from cyber aka hexus aka idk

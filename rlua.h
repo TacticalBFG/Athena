@@ -48,8 +48,8 @@ struct Rtvalue {
 #define RLUA_TUPVALUE                 10
 
 /* LUA STACK STUFF */
-#define Rluatop     12;
-#define Rluabase    8;
+#define Rluatop     8;
+#define Rluabase    12;
 
 
 #define rlua_inctop(r) *(DWORD*)(r + Rluatop) += sizeof(Rtvalue)
